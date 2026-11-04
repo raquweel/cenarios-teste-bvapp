@@ -1,0 +1,50 @@
+# ==========================================
+# Ambientes Virtuais (Virtual Environments)
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+
+# ==========================================
+# Ficheiros e Bases de Dados do Django
+# ==========================================
+*.sqlite3
+*.sqlite3-journal
+db.sqlite3
+/media/
+/staticfiles/
+
+# ==========================================
+# Cache e Compilação do Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ==========================================
+# Cache e Configurações de Ferramentas (uv, pytest, etc.)
+# ==========================================
+.uv/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# ==========================================
+# Ficheiros do Sistema Operativo e IDEs
+# ==========================================
+# VS Code
+.vscode/
+
+# Windows
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Variáveis de Ambiente e Segredos
+# ==========================================
+.env
+.env.local
