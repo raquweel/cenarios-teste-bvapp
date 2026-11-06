@@ -5,7 +5,7 @@ Objetivo: Executar a rotina automática de alerta de vencimento para alterar o s
 
 Requisitos: 
 - [27182] Alerta de vencimento
-- [24390] CA03 - O status Atrasada deve ser gerado automaticamente pelo sistema, se a conta não estiver marcada como Paga no período após sua data de vencimento
+- [24390] CA02 - O status Atrasada deve ser gerado automaticamente pelo sistema, se a conta não estiver marcada como Paga no período após sua data de vencimento
 
 Ator:
 - Sistema (Rotina de Backend)
