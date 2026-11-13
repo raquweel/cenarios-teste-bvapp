@@ -11,8 +11,7 @@ Ator:
 '''
 
 # 🟢 [FP] - FLUXO PRINCIPAL
-# ---------------------------------------------------------------
-
+# --------------------------------------------------------------- 
 # O ator acessa os detalhes de uma conta a pagar e seleciona uma parcela para registrar pagamento.
 
 # O ator informa a Data do pagamento, anexa o Comprovante de pagamento (PDF, JPEG, JPG ou PNG) 
@@ -23,13 +22,12 @@ Ator:
 # O sistema valida o formato do comprovante obrigatório, altera o status da parcela para "Paga" 
 # e recalcula o status geral da conta. [RN1]
 
-# O ator verifica nos detalhes da conta que o comprovante está visível para usuários com permissão, 
-# identificando a parcela e o usuário que o enviou.
+# O ator verifica nos detalhes da conta que o comprovante está visível para o tesoureiro, identificando 
+# a parcela e o usuário que o enviou.
 
 
 # 🟠 [A1] - TENTATIVA DE REGISTRO SEM COMPROVANTE OU COM FORMATO INVÁLIDO
 # ---------------------------------------------------------------
-
 # O ator tenta registrar o pagamento sem anexar o comprovante ou enviando arquivo fora dos formatos 
 # PDF, JPEG, JPG e PNG.
 
@@ -38,6 +36,5 @@ Ator:
 
 # 🟣 [RN1] - COMPROVANTE OBRIGATÓRIO E RECÁLCULO DE STATUS
 # ---------------------------------------------------------------
-
 # O pagamento ocorre fora do sistema. O comprovante é obrigatório (PDF, JPEG, JPG e PNG). 
 # Ao registrar, a parcela passa para "Paga", o status da conta é recalculado e o comprovante exibe parcela e autor.
