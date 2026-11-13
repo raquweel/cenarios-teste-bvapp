@@ -15,9 +15,8 @@ Ator:
 
 # O ator (Tesoureiro) acessa a página de cadastro de contas a pagar e seleciona o Tipo "Recorrente".
 
-# O ator preenche os dados obrigatórios da conta: Nome, Descrição, Fornecedor existente, 
-# Categoria de despesa existente, Valor (R$), Data de lançamento, Intervalo entre parcelas (dias maior que 0), 
-# Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
+# O ator preenche os dados obrigatórios da conta: Nome, Descrição, Prestador existente, Valor (R$), Data de lançamento, 
+# Intervalo entre parcelas (dias maior que 0), Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
 
 # Ao concluir o preenchimento, o ator seleciona a opção "Salvar". [A2][A3]
 
