@@ -16,8 +16,7 @@ Ator:
 # - Tipo (Parcelada ou Recorrente)
 # - Nome
 # - Descrição
-# - Fornecedor 
-# - Categoria 
+# - Prestador  
 # - Valor (R$)
 # - Data de lançamento
 # - Número de parcelas (exibido quando Parcelada)
@@ -31,7 +30,7 @@ Ator:
 # O ator seleciona o Tipo "Recorrente" e define o Intervalo entre parcelas como "0" dias 
 # para caracterizar uma conta única (sem recorrência e sem número de parcelas).
 
-# O ator preenche os demais dados: Nome, Descrição, Fornecedor existente, Categoria, 
+# O ator preenche os demais dados: Nome, Descrição, Prestador existente, 
 # Valor (R$), Data de lançamento, Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". 
 # Quando o tesoureiro preenche o formulário, antes de clicar em salvar, 
 # ele pode escolher anexar um boleto [A4].
