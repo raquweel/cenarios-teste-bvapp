@@ -19,9 +19,8 @@ Ator:
 # - Número de parcelas
 # - Intervalo entre parcelas (dias)
 
-# O ator preenche os dados obrigatórios da conta: Nome, Descrição, Fornecedor existente, 
-# Categoria de despesa existente, Valor total (R$), Data de lançamento, Número de parcelas (maior que 1), 
-# Intervalo entre parcelas (dias), Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
+# O ator preenche os dados obrigatórios da conta: Nome, Descrição, Prestador existente, Valor total (R$), Data de lançamento, 
+# Número de parcelas (maior que 1), Intervalo entre parcelas (dias), Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
 
 # Ao concluir o preenchimento, o ator seleciona a opção "Salvar". [A2][A3]
 
