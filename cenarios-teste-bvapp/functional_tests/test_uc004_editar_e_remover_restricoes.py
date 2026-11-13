@@ -23,8 +23,8 @@ Ator:
 
 # O ator seleciona a opção "Editar" na conta a pagar. [A1]
 
-# O sistema exibe o formulário de edição preenchido com os dados atuais da conta (Nome, Descrição, Fornecedor, 
-# Categoria, Valor, Tipo de juros, Taxa de juros e Status).
+# O sistema exibe o formulário de edição preenchido com os dados atuais da conta (Nome, Descrição, Fornecedor, Valor, Tipo de juros, 
+#Taxa de juros e Status).
 
 # O ator altera o campo Descrição e atualiza o Valor das parcelas pendentes para "R$ 650,00".
 
