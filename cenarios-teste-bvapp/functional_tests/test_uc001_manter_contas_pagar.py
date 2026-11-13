@@ -1,105 +1,91 @@
-"""
-UC001 - Manter Contas a Pagar
+'''
+UC001 - Manter contas a pagar 
 
-Objetivo: Permitir que o tesoureiro possa cadastrar, consultar, alterar e excluir contas a pagar no sistema.
+Objetivo: Permitir cadastrar, consultar, editar e remover logicamente contas a pagar no sistema.
 
-Requisitos: 
-- [24154] Cadastro de contas a pagar
-- [24172] CA01 - O cadastro da conta deve conter os seguintes campos obrigatórios
-- [24175] CA02 - Apenas membros da tesouraria podem cadastrar contas
+Requisitos:
+- RF05012
 
 Ator:
-- Membro Tesoureiro da Diretoria
-"""
+- Tesoureiro
+'''
+
 # 🟢 [FP] - FLUXO PRINCIPAL (CRUD COMPLETO)
 # ---------------------------------------------------------------
-# O ator acessa a página de cadastro de contas a pagar. Ele verifica que o 
-# título da página é "Cadastro de Contas a Pagar". Ele observa os tipos para seleção:
-# - Seletor/Botão "Única/Parcelada"
-# - Seletor/Botão "Recorrente"
-# E os campos de cadastro exibidos:
+# O tesoureiro acessa a página de cadastro de contas a pagar. Ele verifica que existem os campos:
+# - Tipo (Parcelada ou Recorrente)
 # - Nome
-# - Descrição (opcional)
+# - Descrição
+# - Fornecedor (selecionado do cadastro existente)
+# - Categoria 
+# - Valor (R$)
 # - Data de lançamento
-# - Valor
-# - Prestador
-# - Status (aberta/cancelada)
 # - Número de parcelas
-# - Intervalo em dias
-# - Opções
-# -- Botão "Salvar"
-# -- Botão "Cancelar"
+# - Intervalo entre parcelas (dias)
+# - Tipo de juros
+# - Taxa de juros (%)
+# - Anexo da nota fiscal ou boleto (opcional)
+# - Status inicial (Aberta ou Cancelada)
+# - Opções: Botão "Salvar" e Botão "Cancelar"
 
-# O ator seleciona o tipo "Única/Parcelada".
+# O ator preenche os dados de uma conta única: Tipo "Única", Nome, Descrição, Fornecedor existente,
+# Categoria de despesa existente, Valor (R$), Data de lançamento, Número de parcelas "1", 
+# Intervalo entre parcelas "0", Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
 
-# O ator preenche os campos obrigatórios: Nome "Conta de Luz", Data de lançamento "20/11/2026", 
-# Valor "350.00", Prestador "Energisa", Status "aberta", Número de parcelas "1" e Intervalo em dias "0".
-
-# Ao concluir o preenchimento, ele seleciona a opção "Salvar". [A2][A3]
+# Ao concluir o cadastro, ele seleciona a opção "Salvar". [A2][A3]
 
 # O sistema verifica que os dados estão corretos. [RN1]
 
-# O sistema salva a conta e exibe a mensagem "Conta a pagar cadastrada com sucesso!".
+# O sistema salva a conta a pagar e exibe a mensagem "Conta a pagar cadastrada com sucesso!".
 
-# O ator seleciona 'Consultar' no menu.
+# O ator acessa a consulta de detalhes da conta.
 
-# O sistema exibe a página de listagem de contas a pagar.
-
-# O ator verifica que a conta cadastrada está na lista.
+# O sistema exibe os dados da conta, suas parcelas, os comprovantes e o histórico de alterações.
 
 
-# 🟠 [A1] - BUSCAR CONTA A PAGAR
+# 🟠 [A1] - CONSULTAR DETALHES DA CONTA A PAGAR
 # ---------------------------------------------------------------
-# O ator necessita realizar uma busca por contas na lista.
-# Ele acessa a página "Listar contas a pagar".
 
-# O sistema exibe a página de listagem de contas.
+# O ator acessa a listagem geral (RF05020) e seleciona uma conta cadastrada.
 
-# Seleciona o campo específico para busca e digita o nome do prestador ou nome da conta.
-
-# O ator seleciona 'Pesquisar'.
-
-# O sistema exibe todas as contas que correspondem aos termos digitados.
+# O sistema exibe a página/modal de detalhe contendo os dados da conta, suas parcelas, 
+# os comprovantes anexados e o histórico completo de alterações.
 
 
 # 🟠 [A2] - EDITAR CONTA A PAGAR
 # ---------------------------------------------------------------
-# O ator executa [A1].
 
-# O ator seleciona a conta na lista e clica no botão para editar a conta.
+# O ator (Tesoureiro) executa [A1] e seleciona a opção para editar a conta.
 
-# O sistema exibe a página de edição de contas a pagar com os campos preenchidos com os dados atuais.
+# O sistema exibe o formulário de edição com os campos preenchidos.
 
-# O ator altera o Valor e a Descrição da conta e clica no botão "Salvar".
+# O ator altera o valor da conta e seleciona "Salvar".
 
-# O sistema salva os dados atualizados.
-
-# O ator seleciona 'Listar contas' no menu.
-
-# O sistema exibe a lista de contas cadastradas.
-
-# O ator verifica que a conta atualizada exibe os novos dados.
+# O sistema atualiza a conta e registra a edição no log de auditoria com usuário, data, hora 
+# e os valores anterior e novo dos campos alterados.
 
 
-# 🟠 [A3] - EXCLUIR CONTA A PAGAR
+# 🟠 [A3] - REMOVER CONTA A PAGAR (EXCLUSÃO LÓGICA)
 # ---------------------------------------------------------------
-# O ator decide excluir a conta e executa [A1].
 
-# Ele visualiza a conta e seleciona a opção 'Excluir'.
+# O ator (Administrador) executa [A1] e seleciona uma conta sem parcela paga e com status "Aberta" ou "Atrasada".
 
-# O sistema pergunta se o usuário realmente deseja excluir a conta a pagar.
+# O ator seleciona a opção 'Remover', informa o motivo da remoção e confirma.
 
-# O ator confirma a exclusão.
-
-# O sistema exclui a conta a pagar.
-
-# O ator seleciona 'Listar contas' no menu.
-
-# O sistema exibe a lista de contas cadastradas.
-
-# O ator verifica que a conta excluída não está mais na lista.
+# O sistema realiza a remoção lógica (oculta a conta das listagens) e registra no log de auditoria 
+# o ID, o motivo, o usuário, a data e a hora da remoção.
 
 
-# 🟣 [RN1] - VALIDAÇÃO DA CONTA ÚNICA/PARCELADA
+# 🟠 [A4] - ANEXAR NOTA FISCAL OU BOLETO
 # ---------------------------------------------------------------
-# No cadastro do tipo Única/Parcelada, é obrigatório preencher Nome, Data de lançamento, Valor, Prestador, Status, Número de parcelas e Intervalo em dias. O campo Descrição é opcional.
+
+# O ator seleciona o campo "Anexo da nota fiscal ou boleto" e escolhe um arquivo nos formatos PDF, JPEG, JPG ou PNG.
+
+# O sistema anexa o arquivo ao cadastro da conta.
+
+
+# 🟣 [RN1] - REGRAS DE CADASTRO E PERMISSÃO
+# ---------------------------------------------------------------
+
+# Somente o Tesoureiro cadastra contas a pagar. Fornecedor e Categoria vêm dos cadastros existentes.
+# Conta única exige 1 parcela e intervalo 0. Anexo é opcional (PDF, JPEG, JPG, PNG).

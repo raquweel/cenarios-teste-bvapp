@@ -1,43 +1,41 @@
-"""
-UC002 - Cadastrar Conta Parcelada
+'''
+UC002 - Cadastrar conta a pagar parcelada
 
-Objetivo: Permitir o cadastro de contas a pagar divididas em múltiplas parcelas no formulário Única/Parcelada.
+Objetivo: Permitir que o tesoureiro cadastre uma conta parcelada exigindo número de parcelas, intervalo e validando que a soma das parcelas seja igual ao valor total.
 
-Requisitos: 
-- [24154] Cadastro de contas a pagar
-- [24172] CA01 - O cadastro da conta deve conter os seguintes campos obrigatórios
-- [24175] CA02 - Apenas membros da tesouraria podem cadastrar contas
+Requisitos:
+- RF05012
 
 Ator:
-- Membro Tesoureiro da Diretoria
-"""
+- Tesoureiro
+'''
 
 # 🟢 [FP] - FLUXO PRINCIPAL
 # ---------------------------------------------------------------
-# O ator acessa a página de cadastro de contas a pagar.
-# O ator seleciona o tipo "Única/Parcelada". [A1]
 
-# O sistema disponibiliza os campos específicos: Nome, Descrição (opcional), Data de lançamento, Valor, Prestador, Status, Número de parcelas e Intervalo em dias.
-# O ator preenche os campos obrigatórios:
-# - Nome: "Conta telfônica"
-# - Data de lançamento: "10/12/2026"
-# - Valor: "4500.00"
-# - Prestador: "Claro"
-# - Status: "aberta"
-# - Número de parcelas: "3"
-# - Intervalo em dias: "30"
+# O ator acessa a página de cadastro de contas a pagar e seleciona o Tipo "Parcelada".
 
-# O ator clica no botão "Salvar".
+# O ator preenche os dados obrigatórios: Nome, Descrição, Fornecedor, Categoria, Valor (R$), 
+# Data de lançamento, Número de parcelas (> 1), Intervalo entre parcelas (dias), Tipo de juros, 
+# Taxa de juros (%) e Status inicial "Aberta". [A1]
 
-# O sistema valida o preenchimento do número de parcelas e do intervalo em dias, salvando o cadastro com sucesso. [RN1]
+# O ator seleciona a opção "Salvar".
+
+# O sistema valida que o número de parcelas e o intervalo foram preenchidos e que a soma 
+# das parcelas é igual ao valor total informado. [RN1]
+
+# O sistema salva a conta parcelada e exibe a mensagem "Conta a pagar cadastrada com sucesso!".
 
 
-# 🟠 [A1] - ALTERAR TIPO PARA RECORRENTE
+# 🟠 [A1] - SOMA DAS PARCELAS DIFERENTE DO VALOR TOTAL
 # ---------------------------------------------------------------
-# O ator altera a opção para "Recorrente".
-# O sistema oculta o campo "Número de parcelas" e mantém apenas o campo "Intervalo em dias".
+
+# Quando a soma das parcelas difere do valor total informado, o sistema impede o salvamento 
+# e exibe mensagem de erro de validação.
 
 
-# 🟣 [RN1] - VALIDAÇÃO DE CAMPOS PARCELADOS
+# 🟣 [RN1] - VALIDAÇÃO DE CONTA PARCELADA
 # ---------------------------------------------------------------
-# No cadastro de tipo Única/Parcelada, os campos Número de parcelas e Intervalo em dias são de preenchimento obrigatório.
+
+# Conta parcelada exige número de parcelas e intervalo entre parcelas (dias). 
+# A soma das parcelas deve ser obrigatoriamente igual ao valor total.
