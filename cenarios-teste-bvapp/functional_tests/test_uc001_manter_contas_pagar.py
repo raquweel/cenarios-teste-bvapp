@@ -1,7 +1,7 @@
 '''
 UC001 - Manter contas a pagar 
 
-Objetivo: Permitir cadastrar, consultar, editar e remover logicamente contas a pagar no sistema.
+Objetivo: Permitir que o tesoureiro possa cadastrar, consultar, editar e remover logicamente contas a pagar no sistema.
 
 Requisitos:
 - RF05012
@@ -12,15 +12,15 @@ Ator:
 
 # 🟢 [FP] - FLUXO PRINCIPAL (CRUD COMPLETO)
 # ---------------------------------------------------------------
-# O tesoureiro acessa a página de cadastro de contas a pagar. Ele verifica que existem os campos:
+# O ator (Tesoureiro) acessa a página de cadastro de contas a pagar. Ele verifica que existem os campos:
 # - Tipo (Parcelada ou Recorrente)
 # - Nome
 # - Descrição
-# - Fornecedor (selecionado do cadastro existente)
+# - Fornecedor 
 # - Categoria 
 # - Valor (R$)
 # - Data de lançamento
-# - Número de parcelas
+# - Número de parcelas (exibido quando Parcelada)
 # - Intervalo entre parcelas (dias)
 # - Tipo de juros
 # - Taxa de juros (%)
@@ -28,9 +28,11 @@ Ator:
 # - Status inicial (Aberta ou Cancelada)
 # - Opções: Botão "Salvar" e Botão "Cancelar"
 
-# O ator preenche os dados de uma conta única: Tipo "Única", Nome, Descrição, Fornecedor existente,
-# Categoria de despesa existente, Valor (R$), Data de lançamento, Número de parcelas "1", 
-# Intervalo entre parcelas "0", Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
+# O ator seleciona o Tipo "Recorrente" e define o Intervalo entre parcelas como "0" dias 
+# para caracterizar uma conta única (sem recorrência e sem número de parcelas).
+
+# O ator preenche os demais dados: Nome, Descrição, Fornecedor existente, Categoria, 
+# Valor (R$), Data de lançamento, Tipo de juros, Taxa de juros (%) e Status inicial "Aberta". [A4]
 
 # Ao concluir o cadastro, ele seleciona a opção "Salvar". [A2][A3]
 
@@ -40,7 +42,7 @@ Ator:
 
 # O ator acessa a consulta de detalhes da conta.
 
-# O sistema exibe os dados da conta, suas parcelas, os comprovantes e o histórico de alterações.
+# O sistema exibe os dados da conta, sua parcela única, os comprovantes e o histórico de alterações.
 
 
 # 🟠 [A1] - CONSULTAR DETALHES DA CONTA A PAGAR
@@ -48,32 +50,29 @@ Ator:
 
 # O ator acessa a listagem geral (RF05020) e seleciona uma conta cadastrada.
 
-# O sistema exibe a página/modal de detalhe contendo os dados da conta, suas parcelas, 
-# os comprovantes anexados e o histórico completo de alterações.
+# O sistema exibe o detalhe contendo os dados da conta, suas parcelas, os comprovantes e o histórico de alterações.
 
 
 # 🟠 [A2] - EDITAR CONTA A PAGAR
 # ---------------------------------------------------------------
 
-# O ator (Tesoureiro) executa [A1] e seleciona a opção para editar a conta.
+# O ator executa [A1] e seleciona a opção para editar a conta.
 
 # O sistema exibe o formulário de edição com os campos preenchidos.
 
 # O ator altera o valor da conta e seleciona "Salvar".
 
-# O sistema atualiza a conta e registra a edição no log de auditoria com usuário, data, hora 
-# e os valores anterior e novo dos campos alterados.
+# O sistema atualiza a conta e as parcelas ainda não pagas.
 
 
 # 🟠 [A3] - REMOVER CONTA A PAGAR (EXCLUSÃO LÓGICA)
 # ---------------------------------------------------------------
 
-# O ator (Administrador) executa [A1] e seleciona uma conta sem parcela paga e com status "Aberta" ou "Atrasada".
+# O ator (Tesoureiro) executa [A1] e seleciona uma conta sem parcela paga e com status "Aberta" ou "Atrasada".
 
 # O ator seleciona a opção 'Remover', informa o motivo da remoção e confirma.
 
-# O sistema realiza a remoção lógica (oculta a conta das listagens) e registra no log de auditoria 
-# o ID, o motivo, o usuário, a data e a hora da remoção.
+# O sistema realiza a remoção lógica e a conta deixa de aparecer nas listagens.
 
 
 # 🟠 [A4] - ANEXAR NOTA FISCAL OU BOLETO
@@ -87,5 +86,6 @@ Ator:
 # 🟣 [RN1] - REGRAS DE CADASTRO E PERMISSÃO
 # ---------------------------------------------------------------
 
-# Somente o Tesoureiro cadastra contas a pagar. Fornecedor e Categoria vêm dos cadastros existentes.
-# Conta única exige 1 parcela e intervalo 0. Anexo é opcional (PDF, JPEG, JPG, PNG).
+# Somente o Tesoureiro cadastra e remove contas a pagar. Fornecedor e Categoria vêm dos cadastros existentes.
+# Uma conta única é cadastrada selecionando o tipo Recorrente com intervalo de 0 dias (sem recorrência). 
+# Anexo é opcional (PDF, JPEG, JPG, PNG).
